@@ -1,3 +1,5 @@
+package com.kodilla.testing.collection;
+
 import com.kodilla.testing.collection.OddNumbersExterminator;
 import org.junit.*;
 
@@ -25,6 +27,8 @@ public class CollectionTestSuite {
     }
 
     @Test
+
+    // poprawić test.
     public void testOddNumbersExterminatorEmptyList() {
 
         // jedyne co powinieneś tutaj zrobić, to wywołać metodę z klasy exterminate z klasy "OddNumbersExterminator"
