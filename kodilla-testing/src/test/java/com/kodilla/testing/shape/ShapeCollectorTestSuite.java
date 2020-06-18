@@ -1,105 +1,89 @@
-//package com.kodilla.testing.shape;
-//
-//import com.kodilla.testing.shape.*
-//
-//import org.junit.After;
-//import org.junit.Assert;
-//import org.junit.Before;
-//import org.junit.Test;
-//
-//public class ShapeCollectorTestSuite {
-//    private static int counter = 1;
-//
-//    @Before
-//    public void Before() {
-//        System.out.println("Start testu nr " + counter);
-//    }
-//
-//    @After
-//    public void After() {
-//        System.out.println("Koniec testu nr " + counter);
-//        counter++;
-//    }
-//
-//    @Test
-//    public void testAddFigure() {
-//        //given
-//        ShapeCollector objShapeCollector = new ShapeCollector();
-//        //when
-//        Shape circle = new Circle(2.0);
-//        boolean result = objShapeCollector.addFigure(circle);
-//        //then
-//        Assert.assertTrue(result);
-//    }
-//
-//    @Test
-//    public void testRemoveFigureExist() {
-//        //given
-//        ShapeCollector objShapeCollector = new ShapeCollector();
-//        Shape circle = new Circle(2.0);
-//        objShapeCollector.addFigure(circle);
-//        //when
-//        boolean result = objShapeCollector.removeFigure(circle);
-//        //then
-//        Assert.assertTrue(result);
-//        Assert.assertEquals(0, objShapeCollector.shapesListSize());
-//    }
-//
-//    @Test
-//    public void testRemoveFigureObjectNotExist() {
-//        //given
-//        ShapeCollector objShapeCollector = new ShapeCollector();
-//        Shape circle = new Circle(2.0);
-//        Shape triangle = new Triangle(5.0, 5.0);
-//        objShapeCollector.addFigure(circle);
-//        //when
-//        boolean result = objShapeCollector.removeFigure(triangle);
-//        //then
-//        Assert.assertFalse(result);
-//    }
-//
-//    @Test
-//    public void testGetFigureUnderIndex() {
-//        //given
-//        ShapeCollector objShapeCollector = new ShapeCollector();
-//        Shape circle = new Circle(2.0);
-//        objShapeCollector.addFigure(circle);
-//        //when
-//        Shape expectedFigure = objShapeCollector.getFigure(-1);
-//        //then
-//        Assert.assertEquals(null, expectedFigure);
-//    }
-//
-//    @Test
-//    public void testGetFigureAboveIndex() {
-//        //given
-//        ShapeCollector objShapeCollector = new ShapeCollector();
-//        Shape circle = new Circle(2.0);
-//        objShapeCollector.addFigure(circle);
-//        //when
-//        Shape expectedFigure = objShapeCollector.getFigure(123);
-//        //then
-//        Assert.assertEquals(null, expectedFigure);
-//    }
-//
-//    @Test
-//    public void testGetFigureIndex0() {
-//        //given
-//        ShapeCollector objShapeCollector = new ShapeCollector();
-//        //when
-//        Shape expectedFigure = objShapeCollector.getFigure(123);
-//        //then
-//        Assert.assertEquals(null, expectedFigure);
-//    }
-//    @Test
-//    public void testShowFigures() {
-//        //given
-//        ShapeCollector objShapeCollector = new ShapeCollector();
-//        Shape circle = new Circle(2.0);
-//        objShapeCollector.addFigure(circle);
-//        //when
-//        //then
-//        Assert.assertEquals(1, objShapeCollector.shapesListSize());
-//        //   Assert.assertThat(objShapeCollector.showFigures(), CoreMatchers.hasItems("Circle 12.566370614359172"));
-//    }
-//}
+package com.kodilla.testing.shape;
+
+import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.*;
+
+
+public class ShapeCollectorTestSuite {
+
+    @Test
+    public void testAddFigure(){
+
+        //Given
+        ShapeCollector shapeCollector = new ShapeCollector();
+        Shape shape = new Square(4);
+        //When
+        shapeCollector.addFigure(shape);
+        //Then
+        assertEquals(1, shapeCollector.getShapeCollection().size());
+    }
+
+    @Test
+    public void testRemoveFigure(){
+
+        //Given
+        ShapeCollector shapeCollector = new ShapeCollector();
+        Shape shape = new Square(4);
+        shapeCollector.addFigure(shape);
+        //When
+        boolean result = shapeCollector.removeFigure(shape);
+        //Then
+        assertTrue(result);
+        assertEquals(0, shapeCollector.getShapeCollection().size());
+    }
+
+    @Test
+    public void testRemoveFigureWhichDoesNotExist(){
+
+        //Given
+        ShapeCollector shapeCollector = new ShapeCollector();
+        shapeCollector.addFigure(new Square(5));
+        //When
+        boolean result = shapeCollector.removeFigure(new Square(4));
+        //Then
+        assertFalse(result);
+        assertEquals(1, shapeCollector.getShapeCollection().size());
+    }
+
+    @Test
+    public void testGetFigureExistNumber(){
+
+        //Given
+        ShapeCollector shapeCollector = new ShapeCollector();
+        Shape shape = new Square(4);
+        shapeCollector.addFigure(shape);
+        //When
+        Shape shapeResult = shapeCollector.getFigure(0);
+        //Then
+        assertEquals(shape, shapeResult);
+    }
+
+    @Test
+    public void testGetFigureNumberOutOfRange(){
+
+        //Given
+        ShapeCollector shapeCollector = new ShapeCollector();
+        //When
+        Shape shapeResult = shapeCollector.getFigure(0);
+        //Then
+        assertNull(shapeResult);
+    }
+    @Test
+    public void testShowFigures(){
+
+        //Given
+        ShapeCollector shapeCollector = new ShapeCollector();
+        Shape shape = new Square(4);
+        shapeCollector.addFigure(shape);
+        ArrayList<Shape> shapeList= new ArrayList<>();
+        shapeList.add(shape);
+        //When
+        List<Shape> shapeResultList = shapeCollector.getShapeCollection();
+        //Then
+        assertEquals(shapeList.toString(), shapeResultList.toString());
+    }
+}
