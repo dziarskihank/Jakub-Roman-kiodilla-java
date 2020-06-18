@@ -7,6 +7,10 @@ public class SimpleUser {
         this.username = username;
         this.realName = realName;
     }
+
+    public SimpleUser(String theForumUser) {
+    }
+
     public String getUsername() {
         return username;
     }

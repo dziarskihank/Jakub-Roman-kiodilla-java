@@ -33,7 +33,7 @@ public class TestingMain {
         if (substructSum == 2) {
             System.out.println("Test odejmowania zaliczony!");
         } else {
-            System.out.println("Test odejmownaia niezaliczony!");
+            System.out.println("Test odejmowania niezaliczony!");
 
 
         }
