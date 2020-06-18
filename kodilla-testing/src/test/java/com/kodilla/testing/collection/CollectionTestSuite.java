@@ -1,57 +1,46 @@
 package com.kodilla.testing.collection;
 
-import com.kodilla.testing.collection.OddNumbersExterminator;
-import org.junit.*;
-
-import java.util.ArrayList;
+import org.hamcrest.CoreMatchers;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import java.util.Arrays;
+import java.util.List;
 
 public class CollectionTestSuite {
+    private static int counter;
+
     @Before
     public void before() {
-        System.out.println("Collection Test Case: begin");
+        System.out.println("Start testu Collection " + counter);
     }
-
     @After
     public void after() {
-        System.out.println("Collection Test Case: end");
+        System.out.println("Koniec testu Collection " + counter);
+        counter++;
     }
-
-    @BeforeClass
-    public static void beforeClass() {
-        System.out.println("Collection Test Suite: begin");
-    }
-
-    @AfterClass
-    public static void afterClass() {
-        System.out.println("Collection Test Suite: end");
+    @Test
+    public void testOddNumbersExterminatorEmptyList() {
+//given
+        List<Integer> numbers = Arrays.asList();
+        OddNumbersExterminator packNumbers = new OddNumbersExterminator();
+        packNumbers.exterminate(numbers);
+//when
+        List<Integer> listEven = packNumbers.exterminate(numbers);
+//then
+        Assert.assertEquals(numbers.isEmpty(), listEven.isEmpty());
     }
 
     @Test
-
-    // poprawić test.
-    public void testOddNumbersExterminatorEmptyList() {
-
-        // jedyne co powinieneś tutaj zrobić, to wywołać metodę z klasy exterminate z klasy "OddNumbersExterminator"
-        // i zobaczyć, czy zwraca dobry wynik. Czyli:
-
-        // Given
-        OddNumbersExterminator oddNumbersExterminator = new OddNumbersExterminator();
-        // numbers - dla tej listy wywolamy metode
-        ArrayList<Integer> numbers = new ArrayList<>();
-        numbers.add(1);
-        numbers.add(2);
-        numbers.add(3);
-        numbers.add(4);
-
-        // expectedResult - to nasza metoda powinna zwrocic (bo ma zwrocic tylko parzyste)
-        ArrayList<Integer> expectedResult = new ArrayList<>();
-        expectedResult.add(2);
-        expectedResult.add(4);
-
-        // When
-        ArrayList<Integer> result = oddNumbersExterminator.exterminate(numbers);
-
-        // Then
-        Assert.assertEquals(expectedResult, result);
+    public void testOddNumbersExterminatorNormalList() {
+//given
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 10, 11, 12, 13, 14);
+        OddNumbersExterminator packNumbers = new OddNumbersExterminator();
+        packNumbers.exterminate(numbers);
+//when
+        List<Integer> listEven = packNumbers.exterminate(numbers);
+//then
+             Assert.assertThat(listEven, CoreMatchers.hasItems(2, 4, 10, 12, 14));
     }
 }
