@@ -1,24 +1,32 @@
 package com.kodilla.testing.calculator;
 
-public class Calculator {
-    public int add(int a, int b) {
-        return a + b;
+public class Calculator
+{
+    int a;
+    int b;
+
+    public Calculator(int a, int b)
+    {
+        this.a = a;
+        this.b = b;
     }
 
-    public int substruct(int a, int b) {
-        return a - b;
+    public int getA() {
+        return a;
     }
 
-    public static void main(String[] args) {
+    public int getB() {
+        return b;
+    }
 
-        Calculator calculator = new Calculator();
+    public int add()
+    {
+        return getA()+ getB();
+    }
 
-        int sum = calculator.add(1, 2);
-        int substructSum = calculator.substruct(3, 3);
-
-        System.out.println("Dodawanie:" + sum);
-        System.out.println("Odejmowanie:" + substructSum);
-
+    public int substract()
+    {
+        return getA()- getB();
     }
 
 }
