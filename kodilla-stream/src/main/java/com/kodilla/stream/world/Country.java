@@ -12,10 +12,6 @@ public final class Country {
         this.peopleQty = peopleQty;
     }
 
-    public Country(final String countryName) {
-        this(countryName, new BigDecimal("1000001"));
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
