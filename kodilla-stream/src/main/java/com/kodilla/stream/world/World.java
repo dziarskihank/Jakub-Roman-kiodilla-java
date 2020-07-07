@@ -18,6 +18,6 @@ public final class World {
                 .map(Country::getPeopleQuantity)
                 .reduce(BigDecimal.ZERO, (sum,country) -> sum.add(country));
 
-        return peopleQtyOnTheWorld;
+        return getPeopleQuantity();
     }
 }
