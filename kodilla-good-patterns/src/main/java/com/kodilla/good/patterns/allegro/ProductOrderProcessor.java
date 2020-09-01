@@ -15,7 +15,7 @@ public class ProductOrderProcessor {
     }
 
     public ProductOrderDTO process(ProductOrderRequest productOrderRequest) {
-        boolean isSuccessfullySold = productOrderService.sold(productOrderRequest.getUser(),
+        boolean isSuccessfullySold = productOrderService.sell(productOrderRequest.getUser(),
                 productOrderRequest.getOrderDate(),
                 productOrderRequest.getProduct(),
                 productOrderRequest.getQuantity());

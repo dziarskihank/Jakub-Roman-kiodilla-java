@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class BicycleOrderService implements ProductOrderService {
     @Override
-    public boolean sold(User user, LocalDateTime orderDate, Product product, int quantity) {
+    public boolean sell(User user, LocalDateTime orderDate, Product product, int quantity) {
         return new Random().nextBoolean();
     }
 }
